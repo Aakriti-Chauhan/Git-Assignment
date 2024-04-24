@@ -1,18 +1,17 @@
 import java.util.Scanner;
 
 public class Assignment {
-    public static double[] tax = new double[6];
-    public static double[] totalPrice = new double[6];
-    public static int i = 0, n = 0;
-
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
         String[] name = new String[6];
         int[] quantity = new int[6];
         double[] price = new double[6];
         String[] type = new String[6];
+        double[] tax = new double[6];
+        double[] totalPrice = new double[6];
         double[] finalPrice = new double[6];
         char ch;
+        int i = 0, n = 0;
 
         // Input collection loop
         do {
@@ -67,7 +66,7 @@ public class Assignment {
         // Calculate tax and final price for each item
         for (i = 0; i < n; i++) {
             tax[i] = calculateTax(type[i], totalPrice[i]);
-            finalPrice[i] = totalPrice[i] + tax[i];
+            finalPrice[i] = calculateFinalPrice(totalPrice[i], tax[i]);
         }
 
         // Display item details
@@ -102,5 +101,10 @@ public class Assignment {
                 break;
         }
         return tax;
+    }
+
+    // Method to calculate final price
+    private static double calculateFinalPrice(double totalPrice, double tax) {
+        return totalPrice + tax;
     }
 }
